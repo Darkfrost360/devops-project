@@ -1,4 +1,4 @@
-<h1>DevOps Project v2</h1>from flask import Flask
+from flask import Flask
 
 app = Flask(__name__)
 
