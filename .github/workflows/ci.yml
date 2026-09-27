@@ -25,9 +25,24 @@ jobs:
         working-directory: ./app
         run: pip install -r requirements.txt
 
+      - name: Check Python syntax
+        run: python -m py_compile app/app.py
+
       - name: Run tests
         working-directory: ./app
         run: pytest
 
       - name: Build Docker image
-        run: docker build -t devops-app ./app
+        run: docker build -t devops-app:test ./app
+
+      - name: Start Docker container
+        run: docker run -d --name test-app -p 5000:5000 devops-app:test
+
+      - name: Test container health
+        run: |
+          sleep 3
+          curl --fail http://localhost:5000/health
+
+      - name: Show container logs on failure
+        if: failure()
+        run: docker logs test-app || true
