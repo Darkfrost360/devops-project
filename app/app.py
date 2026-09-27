@@ -1,4 +1,4 @@
-from flask import Flask
+<h1>DevOps Project v2</h1>from flask import Flask
 
 app = Flask(__name__)
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return """
-    <h1>DevOps Project</h1>
+    <h1>DevOps Project v2</h1>
     <p>Ubuntu Server is running!</p>
     <p>Deployed by Andreas</p>
     """
